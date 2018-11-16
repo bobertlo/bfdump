@@ -26,6 +26,10 @@ func printNode(n *blackfriday.Node, depth int) {
 		fmt.Printf("Heading Level %d\n",n.HeadingData.Level)
 	case blackfriday.Link:
 		fmt.Printf("Link dst:%s\n",n.LinkData.Destination)
+	case blackfriday.Code:
+		fmt.Printf("Code: `%s`\n",n.Literal)
+	case blackfriday.CodeBlock:
+		fmt.Printf("CodeBlock:\n{\n%s}\n",n.Literal)
 	default:
 		fmt.Println(n.Type);
 	}
@@ -42,7 +46,8 @@ func main() {
 	dat, err := ioutil.ReadFile("test.md")
 	check(err)
 
-	m := blackfriday.New(blackfriday.WithExtensions(blackfriday.Tables))
+	m := blackfriday.New(blackfriday.WithExtensions(
+		blackfriday.Tables | blackfriday.FencedCode))
 	n := m.Parse(dat)
 
 	traverse(n,0);
