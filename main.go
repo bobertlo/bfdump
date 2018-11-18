@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"os"
 	"strings"
+
 	"gopkg.in/russross/blackfriday.v2"
 )
 
@@ -43,7 +45,12 @@ func traverse(n *blackfriday.Node, depth int) {
 }
 
 func main() {
-	dat, err := ioutil.ReadFile("test.md")
+	if len(os.Args) != 2 {
+		fmt.Fprintln(os.Stderr, "usage: bfdump <file.md>")
+		os.Exit(1)
+	}
+
+	dat, err := ioutil.ReadFile(os.Args[1])
 	check(err)
 
 	m := blackfriday.New(blackfriday.WithExtensions(
