@@ -20,7 +20,7 @@ func printNode(n *blackfriday.Node, depth int) {
 	switch t := n.Type; t {
 	case blackfriday.Text:
 		text := string(n.Literal)
-		text = strings.Replace(text, "\n"," ",-1)
+		text = strings.Replace(text, "\n","\\n",-1)
 		fmt.Printf("Text \"%s\"\n",text)
 	case blackfriday.Heading:
 		fmt.Printf("Heading Level %d\n",n.HeadingData.Level)
