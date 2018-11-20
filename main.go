@@ -31,7 +31,9 @@ func printNode(n *blackfriday.Node, depth int) {
 	case blackfriday.Code:
 		fmt.Printf("Code: `%s`\n",n.Literal)
 	case blackfriday.CodeBlock:
-		fmt.Printf("CodeBlock:\n{\n%s}\n",n.Literal)
+		fmt.Printf("CodeBlock: Fenced: %b Level: %d\n",
+			n.CodeBlockData.IsFenced, n.CodeBlockData.FenceLength)
+		fmt.Printf("{\n%s}\n",n.Literal)
 	default:
 		fmt.Println(n.Type);
 	}
