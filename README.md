@@ -1,12 +1,12 @@
 # bfdump
 
-bfdump is a test utility for debugging the 
+bfdump is a test utility for debugging the
 [blackfriday.v2](https://github.com/russross/blackfriday/tree/v2) markdown
 parser tree output format. This is just a tool I made to help me create a
 markdown to markdown formatting renderer based off of *blackfriday.v2*.
 
-And, here is a graphical demo of what this tool is, see the output
-of this file, `README.md`:
+And, here is a graphical demo of what this tool is, see the output of this file,
+`README.md`:
 
 ```
 Document

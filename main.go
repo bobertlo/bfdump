@@ -22,20 +22,20 @@ func printNode(n *blackfriday.Node, depth int) {
 	switch t := n.Type; t {
 	case blackfriday.Text:
 		text := string(n.Literal)
-		text = strings.Replace(text, "\n","\\n",-1)
-		fmt.Printf("Text \"%s\"\n",text)
+		text = strings.Replace(text, "\n", "\\n", -1)
+		fmt.Printf("Text \"%s\"\n", text)
 	case blackfriday.Heading:
-		fmt.Printf("Heading Level %d\n",n.HeadingData.Level)
+		fmt.Printf("Heading Level %d\n", n.HeadingData.Level)
 	case blackfriday.Link:
-		fmt.Printf("Link dst:%s\n",n.LinkData.Destination)
+		fmt.Printf("Link dst:%s\n", n.LinkData.Destination)
 	case blackfriday.Code:
-		fmt.Printf("Code: `%s`\n",n.Literal)
+		fmt.Printf("Code: `%s`\n", n.Literal)
 	case blackfriday.CodeBlock:
 		fmt.Printf("CodeBlock: Fenced: %b Level: %d\n",
 			n.CodeBlockData.IsFenced, n.CodeBlockData.FenceLength)
-		fmt.Printf("{\n%s}\n",n.Literal)
+		fmt.Printf("{\n%s}\n", n.Literal)
 	default:
-		fmt.Println(n.Type);
+		fmt.Println(n.Type)
 	}
 }
 
@@ -59,5 +59,5 @@ func main() {
 		blackfriday.Tables | blackfriday.FencedCode))
 	n := m.Parse(dat)
 
-	traverse(n,0);
+	traverse(n, 0)
 }
