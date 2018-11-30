@@ -27,13 +27,15 @@ func printNode(n *blackfriday.Node, depth int) {
 	case blackfriday.Heading:
 		fmt.Printf("Heading Level %d\n", n.HeadingData.Level)
 	case blackfriday.Link:
-		fmt.Printf("Link dst:%s\n", n.LinkData.Destination)
+		fmt.Printf("Link dst:%s id:%d\n", n.LinkData.Destination, n.LinkData.NoteID)
 	case blackfriday.Code:
 		fmt.Printf("Code: `%s`\n", n.Literal)
 	case blackfriday.CodeBlock:
-		fmt.Printf("CodeBlock: Fenced: %b Level: %d\n",
+		fmt.Printf("CodeBlock: Fenced: %t Level: %d\n",
 			n.CodeBlockData.IsFenced, n.CodeBlockData.FenceLength)
 		fmt.Printf("{\n%s}\n", n.Literal)
+	case blackfriday.Image:
+		fmt.Printf("Image: dst: %s\n", n.LinkData.Destination)
 	default:
 		fmt.Println(n.Type)
 	}
